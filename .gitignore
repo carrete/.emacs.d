@@ -1,0 +1,11 @@
+*~
+.last-package-update-day
+anaconda-mode/
+auto-save-list/
+elpa/
+ido.last
+network-security.data
+recentf
+tramp
+transient/
+var/
