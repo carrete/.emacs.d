@@ -14,8 +14,6 @@
 (auto-insert-mode t)
 (cua-mode t)
 (fringe-mode '(2 . 4))
-(ido-mode t)
-(ido-everywhere t)
 
 (defun tvaughan/kill-this-buffer ()
   "Kill this buffer."
@@ -68,11 +66,6 @@
 (setq erc-timestamp-format "[%H:%M] ")
 (setq ibuffer-default-sorting-mode 'alphabetic)
 (setq ibuffer-expert t)
-(setq ido-auto-merge-work-directories-length -1)
-(setq ido-case-fold t)
-(setq ido-create-new-buffer 'always)
-(setq ido-enable-flex-matching t)
-(setq ido-use-virtual-buffers t)
 (setq inhibit-startup-screen t)
 (setq initial-buffer-choice '(lambda () (ibuffer nil "*Buffer List*") (get-buffer "*Buffer List*")))
 (setq initial-scratch-message nil)
