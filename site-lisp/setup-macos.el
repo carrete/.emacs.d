@@ -1,4 +1,8 @@
-;; -*- coding: utf-8; mode: emacs-lisp -*-
+;;; package --- Summary:
+;;; Commentary:
+;;; -*- coding: utf-8; mode: emacs-lisp; lexical-binding: t -*-
+
+;;; Code:
 
 (when (memq system-type '(darwin))
   (global-set-key [kp-delete] 'delete-char)

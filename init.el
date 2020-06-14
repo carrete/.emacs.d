@@ -1,32 +1,36 @@
-;; -*- coding: utf-8; mode: emacs-lisp -*-
+;;; package --- Summary:
+;;; Commentary:
+;;; -*- coding: utf-8; mode: emacs-lisp; lexical-binding: t -*-
 
-(setq package-enable-at-startup nil)
-(setq package-archive-priorities
-      '(("melpa-stable" . 42) ("melpa-unstable" . 1) ("gnu" . 10)))
+;;; Code:
 
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa-unstable" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/"))
-(package-initialize)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(setq use-package-always-ensure t)
-(setq use-package-always-pin "melpa-stable")
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
+(setq straight-vc-git-default-protocol 'ssh)
+(setq straight-vc-git-force-protocol t)
 
-(eval-when-compile
-  (require 'use-package))
-(require 'bind-key)
-
-(let ((user-lisp-directory (expand-file-name "lisp" user-emacs-directory)))
+(let ((user-lisp-directory (expand-file-name "site-lisp" user-emacs-directory)))
   (add-to-list 'load-path user-lisp-directory)
   (mapc (lambda (name)
           (require (intern (file-name-sans-extension name))))
         (directory-files user-lisp-directory nil "\\.el$")))
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
+(provide 'init)
+;;; init.el ends here

@@ -2,10 +2,13 @@
 .last-package-update-day
 anaconda-mode/
 auto-save-list/
-elpa/
-ido.last
+backups/
+bookmarks
+eln-cache/
+forge-database.sqlite
 network-security.data
-recentf
+projectile-bookmarks.eld
+straight/
 tramp
 transient/
 var/

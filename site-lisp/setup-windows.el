@@ -1,17 +1,18 @@
-;; -*- coding: utf-8; mode: emacs-lisp -*-
+;;; package --- Summary:
+;;; Commentary:
+;;; -*- coding: utf-8; mode: emacs-lisp; lexical-binding: t -*-
 
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings 'meta))
+;;; Code:
 
-;; By default split windows vertically. The newly created window must be at
-;; least 110 columns wide otherwise split horizontally.
+;; The current window must be at least 160 columns wide (split into two windows
+;; of 80 column at a minimum), otherwise split horizontally.
 (setq split-height-threshold nil)
-(setq split-width-threshold 110)
+(setq split-width-threshold 160)
 
 (setq enable-debug-message t)
 
 (defun debug-message (&rest args)
-  (if enable-debug-message (apply 'message args)))
+  (when enable-debug-message (apply 'message args)))
 
 (defun enlarge-window-horizontally (columns)
   (enlarge-window columns t))
